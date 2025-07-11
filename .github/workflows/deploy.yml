@@ -1,0 +1,36 @@
+name: Deploy to Render
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Install Render CLI
+        run: |
+          curl -fsSL https://cdn.render.com/cli/install.sh | sh
+          echo "$HOME/.render" >> $GITHUB_PATH
+
+      - name: Deploy to Render
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+        run: |
+          ~/.render/render deploy --service srv-d1nuj8adbo4c73f3abf0 --branch main
