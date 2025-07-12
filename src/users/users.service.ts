@@ -89,4 +89,7 @@ export class UsersService {
       return null;
     }
   }
+  async findByEmail(email: string) {
+    return this.userModel.findOne({ email }).exec();
+  }
 }
