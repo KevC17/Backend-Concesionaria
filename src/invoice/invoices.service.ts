@@ -29,12 +29,14 @@ export class InvoicesService {
 
   async update(id: string, dto: UpdateInvoiceDto): Promise<Invoice> {
     const invoice = await this.findOne(id);
-    if (dto.amount) {
-      invoice.amount = parseFloat(dto.amount);
+
+    if ('amount' in dto && dto.amount !== undefined) {
+      invoice.amount = Number(dto.amount);
     }
-    if (dto.status) {
+    if ('status' in dto && dto.status !== undefined) {
       invoice.status = dto.status;
     }
+
     return this.invoiceRepository.save(invoice);
   }
 
