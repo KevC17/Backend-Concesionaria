@@ -1,10 +1,9 @@
-import { IsOptional, IsString, IsNumber, IsPositive } from 'class-validator';
+import { IsOptional, IsString, IsNumberString } from 'class-validator';
 
 export class UpdateInvoiceDto {
   @IsOptional()
-  @IsNumber()
-  @IsPositive()
-  amount?: number;
+  @IsNumberString()
+  amount?: string;
 
   @IsOptional()
   @IsString()
