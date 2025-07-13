@@ -16,10 +16,15 @@ export class AuthService {
     if (existingUser) throw new BadRequestException('Username already exists');
 
     const hashedPassword = await bcrypt.hash(dto.password, 10);
-    const user = await this.usersService.create({ ...dto, password: hashedPassword });
+    const user = await this.usersService.create({
+      ...dto,
+      password: hashedPassword,
+      role: 'USER', // 🔐 forzar rol USER
+    });
+
     if (!user) throw new BadRequestException('Failed to create user');
 
-    return this.login({ username: user.username, id: user.id });
+    return this.login({ username: user.username, id: user.id, role: user.role });
   }
 
   async validateUserByEmail(email: string, password: string) {
@@ -32,9 +37,14 @@ export class AuthService {
   }
 
   async login(user: any) {
-    const payload = { username: user.username, sub: user.id || user._id };
+    const payload = {
+      username: user.username,
+      sub: user.id || user._id,
+      role: user.role,
+    };
     return {
       access_token: this.jwtService.sign(payload),
+      role: user.role,
     };
   }
 }
