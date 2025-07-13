@@ -28,6 +28,7 @@ export class InvoicesService {
   }
 
   async update(id: string, dto: UpdateInvoiceDto): Promise<Invoice> {
+    console.log('dto:', dto);
     const invoice = await this.findOne(id);
 
     if ('amount' in dto && dto.amount !== undefined) {
