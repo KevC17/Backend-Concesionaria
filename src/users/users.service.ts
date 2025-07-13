@@ -5,6 +5,7 @@ import { User } from './schemas/user.schema';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { paginateMongo, IPaginationOptions, Pagination } from 'src/common/pagination/paginate-mongo';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -55,6 +56,10 @@ export class UsersService {
     try {
       const user = await this.userModel.findById(id).exec();
       if (!user) return null;
+
+      if (dto.password) {
+        dto.password = await bcrypt.hash(dto.password, 10);
+      }
 
       Object.assign(user, dto);
       return await user.save();
