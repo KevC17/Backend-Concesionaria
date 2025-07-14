@@ -19,6 +19,9 @@ export class Car {
 
   @Prop({ default: true })
   available: boolean;
+
+  @Prop({ required: false })
+  image?: string;
 }
 
 export const CarSchema = SchemaFactory.createForClass(Car);

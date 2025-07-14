@@ -1,4 +1,4 @@
-import { IsString, IsNumber, IsBoolean, IsOptional } from 'class-validator';
+import { IsString, IsNumber, IsBoolean, IsOptional, IsUrl } from 'class-validator';
 
 export class CreateCarDto {
   @IsString()
@@ -16,4 +16,8 @@ export class CreateCarDto {
   @IsBoolean()
   @IsOptional()
   available?: boolean;
+
+  @IsOptional()
+  @IsUrl({}, { message: 'Debe ser una URL válida' })
+  image?: string;
 }
