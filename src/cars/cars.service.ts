@@ -15,8 +15,25 @@ export class CarsService {
     return createdCar.save();
   }
 
-  async findAll(options: IPaginationOptions, available?: boolean): Promise<Pagination<Car>> {
-    const filter = available === undefined ? {} : { available };
+  async findAll(
+    options: IPaginationOptions,
+    available?: boolean,
+    search?: string,
+  ): Promise<Pagination<Car>> {
+    const filter: any = {};
+
+    if (available !== undefined) {
+      filter.available = available;
+    }
+
+    if (search) {
+      const regex = new RegExp(search, 'i'); // búsqueda insensible a mayúsculas
+      filter.$or = [
+        { brand: regex },
+        { model: regex },
+      ];
+    }
+
     return paginateMongo<Car>(this.carModel, options, filter);
   }
 
