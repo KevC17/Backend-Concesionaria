@@ -22,6 +22,9 @@ export class Car {
 
   @Prop({ required: false })
   image?: string;
+
+  @Prop({ required: true })
+  price: number;
 }
 
 export const CarSchema = SchemaFactory.createForClass(Car);
