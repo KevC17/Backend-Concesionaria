@@ -8,7 +8,7 @@ async function bootstrap() {
   app.useGlobalFilters(new GlobalHttpExceptionFilter());
 
   app.enableCors({
-    origin: ['http://localhost:5173','https://frontend-concesionaria-git-main-sdk17s-projects.vercel.app/'],
+    origin: ['http://localhost:5173','https://frontend-.vercel.app','https://frontend-concesionaria-git-main-sdk17s-projects.vercel.app/'],
     credentials: true,
   });
 
