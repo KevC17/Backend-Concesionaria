@@ -19,7 +19,7 @@ export class AuthService {
     const user = await this.usersService.create({
       ...dto,
       password: hashedPassword,
-      role: 'USER', // 🔐 forzar rol USER
+      role: 'USER',
     });
 
     if (!user) throw new BadRequestException('Failed to create user');

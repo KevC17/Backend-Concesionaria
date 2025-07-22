@@ -29,7 +29,7 @@ export class CarsController {
     @Query('page') page = 1,
     @Query('limit') limit = 10,
     @Query('available') available?: string,
-    @Query('search') search?: string, // nuevo
+    @Query('search') search?: string,
   ): Promise<Pagination<Car>> {
     const isAvailable = available === undefined ? undefined : available === 'true';
     return this.carsService.findAll({ page, limit }, isAvailable, search);

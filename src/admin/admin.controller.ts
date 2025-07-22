@@ -30,7 +30,6 @@ import { UpdateReservationDto } from '../reservation/dto/update-reservation.dto'
 export class AdminController {
   constructor(private adminService: AdminService) {}
 
-  // Users
   @Get('users')
   getUsers(
     @Query('page') page = 1,
@@ -66,7 +65,6 @@ export class AdminController {
     return { message: 'User deleted successfully' };
   }
 
-  // Cars
   @Get('cars')
   getCars(
     @Query('page', ParseIntPipe) page = 1,
@@ -103,7 +101,6 @@ export class AdminController {
     return { message: 'Car deleted successfully' };
   }
 
-  // Payments
   @Get('payments')
   getPayments() {
     return this.adminService.getAllPayments();
@@ -135,7 +132,6 @@ export class AdminController {
     return { message: 'Payment deleted successfully' };
   }
 
-  // Reservations
   @Get('reservations')
   getReservations() {
     return this.adminService.getAllReservations();
@@ -167,7 +163,6 @@ export class AdminController {
     return { message: 'Reservation deleted successfully' };
   }
 
-  // Invoices
   @Get('invoices')
   getInvoices() {
     return this.adminService.getAllInvoices();

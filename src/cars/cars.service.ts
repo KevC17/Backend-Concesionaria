@@ -27,7 +27,7 @@ export class CarsService {
     }
 
     if (search) {
-      const regex = new RegExp(search, 'i'); // búsqueda insensible a mayúsculas
+      const regex = new RegExp(search, 'i');
       filter.$or = [
         { brand: regex },
         { model: regex },

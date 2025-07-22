@@ -28,7 +28,6 @@ export class AdminService {
     private invoicesService: InvoicesService,
   ) {}
 
-  // Users
   getAllUsers(page: number, limit: number) {
     return this.usersService.findAll({ page, limit });
   }
@@ -45,7 +44,6 @@ export class AdminService {
     return this.usersService.remove(id);
   }
 
-  // Cars
   getAllCars(page: number, limit: number, available?: boolean) {
     return this.carsService.findAll({ page, limit }, available);
   }
@@ -62,7 +60,6 @@ export class AdminService {
     return this.carsService.remove(id);
   }
 
-  // Payments
   getAllPayments() {
     return this.paymentsService.findAll();
   }
@@ -79,7 +76,6 @@ export class AdminService {
     return this.paymentsService.remove(id);
   }
 
-  // Reservations
   getAllReservations() {
     return this.reservationsService.findAll();
   }
@@ -96,7 +92,6 @@ export class AdminService {
     return this.reservationsService.remove(id);
   }
 
-  // Invoices
   getAllInvoices() {
     return this.invoicesService.findAll();
   }

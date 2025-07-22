@@ -23,5 +23,5 @@ export class CreateCarDto {
 
   @IsNumber()
   @Min(0)
-  price: number;  // <-- requerido y mínimo 0
+  price: number;
 }
